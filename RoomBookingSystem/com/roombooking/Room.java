@@ -1,16 +1,16 @@
-
+package roombooking;
 
 public class Room {
-    private int roomNum;
+    private int roomNumber;
     private String roomType;
     private double roomPrice;
     private boolean hasBalcony;
     private boolean hasLounge;
-    private String reservationStatus;  // "free" or "reserved"
-    private String email;
+    private String reservationStatus;  
+    private String email; 
 
-    public Room(int roomNum, String roomType, double roomPrice, boolean hasBalcony, boolean hasLounge, String reservationStatus) {
-        this.roomNum = roomNum;
+    public Room(int roomNumber, String roomType, double roomPrice, boolean hasBalcony, boolean hasLounge, String reservationStatus) {
+        this.roomNumber = roomNumber;
         this.roomType = roomType;
         this.roomPrice = roomPrice;
         this.hasBalcony = hasBalcony;
@@ -18,8 +18,9 @@ public class Room {
         this.reservationStatus = reservationStatus;
     }
 
+    // Getter and Setter methods
     public int getRoomNumber() {
-        return roomNum;
+        return roomNumber;
     }
 
     public String getRoomType() {
@@ -56,8 +57,7 @@ public class Room {
 
     @Override
     public String toString() {
-        return "Room Number: " + roomNum + ", Type: " + roomType + ", Price: " + roomPrice
-                + ", Balcony: " + (hasBalcony ? "Yes" : "No") + ", Lounge: " + (hasLounge ? "Yes" : "No")
-                + ", Reservation Status: " + reservationStatus + (email != null ? ", Reserved by: " + email : "");
+        return String.format("Room Number: %d, Type: %s, Price: £%.2f, Balcony: %b, Lounge: %b, Reservation Status: %s, Email: %s",
+                roomNumber, roomType, roomPrice, hasBalcony, hasLounge, reservationStatus, email);
     }
 }
