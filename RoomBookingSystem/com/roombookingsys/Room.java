@@ -1,4 +1,4 @@
-package roombooking;
+package roombookingsys;
 
 public class Room {
     private int roomNumber;
@@ -9,6 +9,7 @@ public class Room {
     private String reservationStatus;  
     private String email; 
 
+    // constructeur
     public Room(int roomNumber, String roomType, double roomPrice, boolean hasBalcony, boolean hasLounge, String reservationStatus) {
         this.roomNumber = roomNumber;
         this.roomType = roomType;
@@ -55,6 +56,7 @@ public class Room {
         this.email = email;
     }
 
+    // a method used for option 1 to display properly the room.txt file
     @Override
     public String toString() {
         return String.format("Room Number: %d, Type: %s, Price: £%.2f, Balcony: %b, Lounge: %b, Reservation Status: %s, Email: %s",

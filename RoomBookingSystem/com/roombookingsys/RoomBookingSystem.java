@@ -1,16 +1,19 @@
-package roombooking;
+package roombookingsys;
 
 import java.io.*;
 import java.util.*;
 
 public class RoomBookingSystem {
+    //table to stock the rooms.txt data
     private static List<Room> rooms = new ArrayList<>();
 
+    //main load rooms then show the menu
     public static void main(String[] args) {
         loadRooms();
         showMenu();
     }
 
+    //read the rooms.txt file and stock them in a table 
     private static void loadRooms() {
         try (Scanner scanner = new Scanner(new File("C:\\Users\\HP\\Desktop\\ikram\\tinx\\TinaxRoomBooking\\RoomBookingSystem\\com\\rooms.txt"))) {
             while (scanner.hasNextLine()) {
@@ -27,12 +30,16 @@ public class RoomBookingSystem {
                     rooms.add(new Room(roomNum, roomType, roomPrice, hasBalcony, hasLounge, reservationStatus));
                 }
             }
+            // print just to debug u can remove it
             System.out.println("Rooms loaded successfully.");
-        } catch (IOException e) {
+        } 
+        // in case there is an err while reading the file 
+        catch (IOException e) {
             System.out.println("Error loading rooms file.");
         }
     }
 
+    //show the menu to select
     private static void showMenu() {
         Scanner scanner = new Scanner(System.in);
         while (true) {
@@ -63,6 +70,7 @@ public class RoomBookingSystem {
         }
     }
 
+    //option 1 result showing rooms
     private static void showRooms() {
         if (rooms.isEmpty()) {
             System.out.println("No rooms available.");
@@ -73,6 +81,7 @@ public class RoomBookingSystem {
         }
     }
 
+    //option 2 room reservation 
     private static void reserveRoom() {
         Scanner scanner = new Scanner(System.in);
         System.out.print("Enter the room number to reserve: ");
@@ -82,7 +91,7 @@ public class RoomBookingSystem {
         if (room == null || room.getReservationStatus().equals("reserved")) {
             System.out.println("The room is already reserved or not found.");
         } else {
-            scanner.nextLine();  // Clear the newline character
+            scanner.nextLine();  
             System.out.print("Enter your email: ");
             String email = scanner.nextLine();
             room.setReservationStatus("reserved");
@@ -91,6 +100,7 @@ public class RoomBookingSystem {
         }
     }
 
+    //option 3 reservation cancel
     private static void cancelReservation() {
         Scanner scanner = new Scanner(System.in);
         System.out.print("Enter the room number to cancel the reservation: ");
@@ -106,6 +116,7 @@ public class RoomBookingSystem {
         }
     }
 
+    // a fun used to search a room by her number to be used in option 2 and 3
     private static Room findRoomByNumber(int roomNum) {
         for (Room room : rooms) {
             if (room.getRoomNumber() == roomNum) {
